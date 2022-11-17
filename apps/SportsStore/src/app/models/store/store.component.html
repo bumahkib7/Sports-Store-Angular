@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col bg-dark text-white">
+      <a class="navbar-brand">SPORTS STORE</a>
+      <app-cart-summary></app-cart-summary>
+    </div>
+  </div>
+
+  <div class="row text-white">
+    <div class="col-3 bg-info p-2 text-white">
+      <button class="btn btn-block btn-outline-primary" (click)="changeCategory()">
+        Home
+      </button>
+      {{ categories.length }} Categories
+      <div>
+
+        <button *ngFor="let cat of categories"
+                class="btn btn-block btn-outline-primary"
+                (click)="changeCategory(cat)">
+          {{cat}}
+        </button>
+      </div>
+    </div>
+
+    <div class="col-9 p-2">
+      <div
+        *ngFor="let product of products"
+        class="card m-3 p-3 bg-light text-black-50">
+        <h4>
+          {{ product.name }}
+          <span class="badge badge-pill badge-primary float-right">
+            {{ product["price"] | currency: "EUR":"symbol":"2.2-2" }}
+          </span>
+        </h4>
+        <div class="card-text bg-white p-1 text-black-50">
+          {{ product.description }}
+          <button class="btn btn-sm btn-success float-right"
+                  (click)="addProductToCart(product)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+
+      <div class="btn-group float-right">
+        <button *ngFor="let page of pageNumbers" (click)="changePage(page)"
+                class="btn btn-sm btn-outline-primary"
+                [class.active]="page == selectedPage">
+          {{ page }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

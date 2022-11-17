@@ -1,0 +1,45 @@
+{
+  "affected": {
+    "defaultBase": "initial"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json"
+      ]
+    }
+  },
+  "cli": {
+    "analytics": "36d7a0f7-27b1-45e3-8ef7-388e49ed1675",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  },
+  "defaultProject": "SportsStore"
+}

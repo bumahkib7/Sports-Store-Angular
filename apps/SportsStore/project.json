@@ -1,0 +1,130 @@
+{
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:class": {
+      "skipTests": true
+    },
+    "@schematics/angular:component": {
+      "skipTests": true
+    },
+    "@schematics/angular:directive": {
+      "skipTests": true
+    },
+    "@schematics/angular:guard": {
+      "skipTests": true
+    },
+    "@schematics/angular:interceptor": {
+      "skipTests": true
+    },
+    "@schematics/angular:pipe": {
+      "skipTests": true
+    },
+    "@schematics/angular:resolver": {
+      "skipTests": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
+    }
+  },
+  "sourceRoot": "apps/SportsStore/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/SportsStore",
+        "index": "apps/SportsStore/src/index.html",
+        "main": "apps/SportsStore/src/main.ts",
+        "polyfills": "apps/SportsStore/src/polyfills.ts",
+        "tsConfig": "apps/SportsStore/tsconfig.app.json",
+        "assets": [
+          "apps/SportsStore/src/favicon.ico",
+          "apps/SportsStore/src/assets"
+        ],
+        "styles": [
+          "apps/SportsStore/src/styles.css",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+        ],
+        "scripts": [
+
+          "node_modules/bootstrap/dist/js/bootstrap.min.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/SportsStore/src/environments/environment.ts",
+              "with": "apps/SportsStore/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "SportsStore:build:production"
+        },
+        "development": {
+          "browserTarget": "SportsStore:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "SportsStore:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/SportsStore/src/test.ts",
+        "polyfills": "apps/SportsStore/src/polyfills.ts",
+        "tsConfig": "apps/SportsStore/tsconfig.spec.json",
+        "karmaConfig": "apps/SportsStore/karma.conf.js",
+        "assets": [
+          "apps/SportsStore/src/favicon.ico",
+          "apps/SportsStore/src/assets"
+        ],
+        "styles": ["apps/SportsStore/src/styles.css"],
+        "scripts": []
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/SportsStore/**/*.ts",
+          "apps/SportsStore/**/*.html"
+        ]
+      }
+    }
+  }
+}
